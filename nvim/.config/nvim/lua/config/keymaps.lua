@@ -14,8 +14,8 @@ vim.keymap.set("n", "x", '"_x', { desc = "Delete character without yanking" })
 
 -- Tab management: create a tab and move between open tabs.
 vim.keymap.set("n", "<leader>tn", "<Cmd>tabnew<CR>", { desc = "Create new tab" })
-vim.keymap.set("n", "<leader>tp", "<Cmd>tabprevious<CR>", { desc = "Move to previous tab" })
-vim.keymap.set("n", "<leader>tn", "<Cmd>tabnext<CR>", { desc = "Move to next tab" })
+vim.keymap.set("n", "<leader>th", "<Cmd>tabprevious<CR>", { desc = "Move to previous tab" })
+vim.keymap.set("n", "<leader>tl", "<Cmd>tabnext<CR>", { desc = "Move to next tab" })
 
 -- Select every line in the current buffer, like Ctrl+A in a GUI editor.
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })

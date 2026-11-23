@@ -50,8 +50,7 @@ blink.setup({
             draw = {
                 -- Keep the completion label and kind visible in separate columns.
                 columns = {
-                    { "label", "label_description", gap = 1 },
-                    { "kind" },
+                    { "label" },
                 },
             },
         },
@@ -69,3 +68,16 @@ blink.setup({
         end,
     },
 })
+
+-- Match the completion menu background to the editor and keep the theme's border color.
+local function set_menu_highlights()
+    vim.api.nvim_set_hl(0, "BlinkCmpMenu", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { link = "FloatBorder" })
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("user_blink_menu_highlights", { clear = true }),
+    callback = set_menu_highlights,
+})
+
+set_menu_highlights()

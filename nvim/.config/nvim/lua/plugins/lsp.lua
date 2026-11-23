@@ -52,32 +52,58 @@ vim.lsp.config("*", {
 -- Create buffer-local mappings only when an LSP client attaches.
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(event)
-        local function map(lhs, rhs, desc)
-            vim.keymap.set("n", lhs, rhs, {
-                buffer = event.buf,
-                desc = desc,
-            })
-        end
-
-        map("gd", vim.lsp.buf.definition, "Go to definition")
-        map("gD", vim.lsp.buf.declaration, "Go to declaration")
-        map("gr", vim.lsp.buf.references, "Find references")
-        map("gi", vim.lsp.buf.implementation, "Go to implementation")
-        map("gy", vim.lsp.buf.type_definition, "Go to type definition")
-        map("K", vim.lsp.buf.hover, "Show hover documentation")
-        map("<leader>ca", vim.lsp.buf.code_action, "Show code actions")
-        map("<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-        map("[d", function()
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+            buffer = event.buf,
+            desc = "Go to definition",
+        })
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
+            buffer = event.buf,
+            desc = "Go to declaration",
+        })
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, {
+            buffer = event.buf,
+            desc = "Find references",
+        })
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {
+            buffer = event.buf,
+            desc = "Go to implementation",
+        })
+        vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, {
+            buffer = event.buf,
+            desc = "Go to type definition",
+        })
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, {
+            buffer = event.buf,
+            desc = "Show hover documentation",
+        })
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {
+            buffer = event.buf,
+            desc = "Show code actions",
+        })
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+            buffer = event.buf,
+            desc = "Rename symbol",
+        })
+        vim.keymap.set("n", "[d", function()
             vim.diagnostic.jump({ count = -1, float = true })
-        end, "Go to previous diagnostic")
-        map("]d", function()
+        end, {
+            buffer = event.buf,
+            desc = "Go to previous diagnostic",
+        })
+        vim.keymap.set("n", "]d", function()
             vim.diagnostic.jump({ count = 1, float = true })
-        end, "Go to next diagnostic")
-        map("<leader>e", vim.diagnostic.open_float, "Show line diagnostics")
+        end, {
+            buffer = event.buf,
+            desc = "Go to next diagnostic",
+        })
+        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {
+            buffer = event.buf,
+            desc = "Show line diagnostics",
+        })
     end,
 })
 
--- Mason installs the Lua/Python servers and Ruff, then enables each configuration.
+-- Mason installs the Lua/Python servers then enables each configuration.
 -- Pyright may require Node.js/npm to be available for Mason's package installer.
 require("mason").setup()
 require("mason-lspconfig").setup({
