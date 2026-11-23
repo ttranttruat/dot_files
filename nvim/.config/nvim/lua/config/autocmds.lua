@@ -21,3 +21,23 @@ vim.on_key(function(key)
 		end
 	end)
 end, vim.api.nvim_create_namespace("user_auto_nohlsearch"))
+
+-- Format before saving when an attached LSP client supports document formatting.
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = vim.api.nvim_create_augroup("user_lsp_format_on_save", { clear = true }),
+	desc = "Format buffer before saving",
+	callback = function(event)
+		local clients = vim.lsp.get_clients({
+			bufnr = event.buf,
+			method = "textDocument/formatting",
+		})
+		if #clients == 0 then
+			return
+		end
+
+		vim.lsp.buf.format({
+			bufnr = event.buf,
+			timeout_ms = 2000,
+		})
+	end,
+})

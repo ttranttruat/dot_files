@@ -24,6 +24,7 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
+vim.opt.showmode = false
 vim.opt.matchtime = 2
 vim.opt.cmdheight = 1
 
@@ -45,11 +46,6 @@ vim.opt.mouse = "a"
 -- Use the system clipboard for unnamed-register operations when a provider is available.
 vim.opt.clipboard:append("unnamedplus")
 
--- Treesitter-based code folding
--- Treesitter calculates fold levels; level 99 starts with all folds open.
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldlevel = 99
 
 -- Default placement for new splits
 -- Open horizontal splits below and vertical splits to the right.

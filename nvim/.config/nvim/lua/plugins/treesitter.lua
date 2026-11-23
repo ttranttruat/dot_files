@@ -55,6 +55,11 @@ treesitter.setup({
     install_dir = vim.fn.stdpath("data") .. "/site",
 })
 
+-- Use Tree-sitter folds and leave them open when a buffer is first displayed.
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+
 -- install() is a no-op for parsers that are already installed.
 treesitter.install(parser_languages)
 

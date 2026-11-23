@@ -5,13 +5,16 @@ local which_key = require("which-key")
 
 -- Use the modern popup layout and wait briefly before showing the menu.
 which_key.setup({
-    preset = "modern",
-    delay = 300,
+    preset = "helix",
+    delay = 200,
 })
 
--- Name the leader-key groups used by the window, tab, and Telescope mappings.
+-- Name the prefixes used by window, tab, Telescope, Git, and LSP mappings.
 which_key.add({
     { "<leader>s", group = "Splits and windows" },
     { "<leader>t", group = "Tabs" },
     { "<leader>f", group = "Find" },
+    { "<leader>g", group = "Git" },
+    { "<leader>c", group = "Code actions" },
+    { "<leader>r", group = "Rename" },
 })

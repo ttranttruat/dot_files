@@ -13,14 +13,14 @@ gitsigns.setup({
             })
         end
 
-        -- Use native diff navigation in diff windows; otherwise jump between Git hunks.
+        -- ]c and [c jump between Git hunks; retain native navigation in diff windows.
         map("]c", function()
             if vim.wo.diff then
                 vim.cmd.normal({ "]c", bang = true })
             else
                 gitsigns.nav_hunk("next")
             end
-        end, "Next Git change")
+        end, "Next Git hunk")
 
         map("[c", function()
             if vim.wo.diff then
@@ -28,7 +28,7 @@ gitsigns.setup({
             else
                 gitsigns.nav_hunk("prev")
             end
-        end, "Previous Git change")
+        end, "Previous Git hunk")
 
         -- Stage the current hunk, preview its diff, or inspect its line blame.
         map("<leader>gs", gitsigns.stage_hunk, "Stage Git hunk")
